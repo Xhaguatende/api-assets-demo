@@ -21,7 +21,7 @@ concurrency:
   group: ${{ github.ref }}
   
 jobs:
-  build:
+  build-and-push-image:
 
     runs-on: ubuntu-latest
 
@@ -44,9 +44,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-        source-url: ${{ secrets.PACKAGES_FEED_URL }}
       env:
-        NUGET_AUTH_TOKEN: ${{ secrets.NUGET_AUTH_TOKEN }}
 
     - name: Cache .NET Core packages
       uses: actions/cache@v2
